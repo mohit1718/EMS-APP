@@ -59,9 +59,9 @@ The app uses hash routes (`#/exec`, `#/intelligence/insights` and so on) and rel
 |---|---|---|
 | Any static host (S3, Azure Static Web Apps, IIS, Apache, a shared server) | `dist/` | Run `npm run build`, then upload the **contents** of `dist/`. |
 | Docker / nginx | `Dockerfile`, `nginx.conf`, `docker-compose.yml` | Run `docker compose up -d --build`, then open http://localhost:8080. |
-| Vercel | `vercel.json` | Import the repo in Vercel. The settings are picked up automatically. Or run `npx vercel --prod`. |
-| Netlify | `netlify.toml` | Import the repo in Netlify, or run `npx netlify deploy --prod --dir dist` after `npm run build`. |
-| GitHub Pages | `.github/workflows/deploy-pages.yml` | Push to `main`. In the repo, open **Settings → Pages → Source** and choose **GitHub Actions**. |
+| Vercel | `vercel.json` | Import the repo in Vercel and set **Root Directory** to `frontend/fmcg-plant-ems-deploy`. The other settings are picked up automatically. Or run `npx vercel --prod` from this folder. |
+| Netlify | `netlify.toml` | Import the repo in Netlify and set **Base directory** to `frontend/fmcg-plant-ems-deploy`. Or run `npx netlify deploy --prod --dir dist` from this folder after `npm run build`. |
+| GitHub Pages | `.github/workflows/deploy-pages.yml` (at the repo root) | Push to `main`. In the repo, open **Settings → Pages → Source** and choose **GitHub Actions**. |
 | No server at all | `dist/index.html` | Run `npm run build`, then open the file directly, or copy or email it. |
 
 ### Docker without compose
@@ -75,7 +75,7 @@ The image builds the app in a Node 20 stage, then serves it from `nginx:1.27-alp
 
 ### Continuous integration
 
-`.github/workflows/ci.yml` installs, type-checks and builds the app on every pull request.
+`.github/workflows/ci.yml` (at the repo root) installs, type-checks and builds the app on every pull request and every push to `main`.
 
 ## Project structure
 
