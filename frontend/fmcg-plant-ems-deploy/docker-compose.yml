@@ -1,0 +1,7 @@
+services:
+  ems:
+    build: .
+    image: fmcg-plant-ems:latest
+    ports:
+      - "8080:80"
+    restart: unless-stopped
